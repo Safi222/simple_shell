@@ -1,12 +1,14 @@
 # include "myshell.h"
 /**
 * cmd_excuter - Execute cmd
-* @command: command to be executed
+* @cmd: command to be executed
 * @argv: command line argument
+* Return: exist status
 */
-void cmd_excuter(char **command, char *argv)
+int cmd_excuter(char **cmd, char *argv)
 {
 char *cm;
+int i, status;
 pid_t pid = fork();
 if (pid == -1)
 {
@@ -15,14 +17,24 @@ exit(EXIT_FAILURE);
 }
 if (pid == 0)
 {
-cm = command[0];
-
-if (execve(cm, command, NULL) == -1)
+cm = cmd[0];
+if (execve(cm, cmd, environ) == -1)
 {
+for (i = 0; cmd[i]; i++)
+free(cmd[i]);
+free(cmd);
+cmd = NULL;
 perror(argv);
-exit(EXIT_FAILURE);
+return (0);
 }
 }
 else
-wait(NULL);
+{
+waitpid(pid, &status, 0);
+for (i = 0; cmd[i]; i++)
+free(cmd[i]);
+free(cmd);
+cmd = NULL;
+}
+return (WEXITSTATUS(status));
 }

@@ -8,12 +8,12 @@
 int main(int ac, char **argv)
 {
 char *input;
-int i, x;
+int  x;
 char **cmd;
 size_t n;
 ssize_t read_no;
 int status;
-
+(void) ac;
 status = 0;
 cmd =   NULL;
 while (1)
@@ -24,9 +24,9 @@ n = 0;
 read_no = mygetline(&input, &n);
 if (read_no  == -1)
 {
+free(input);
 if (isatty(STDIN_FILENO) == 1)
 write(STDOUT_FILENO, "\n", 1);
-free(input);
 return (status);
 }
 cmd = tokener(input);
@@ -35,10 +35,7 @@ continue;
 x = str_compare(cmd[0], "exit");
 if (x == 0)
 return (status);
-if (ac > 0)
-cmd_excuter(cmd, argv[0]);
-for (i = 0; cmd[i]; i++)
-free(cmd[i]);
+status = cmd_excuter(cmd, argv[0]);
 }
 return (0);
 }

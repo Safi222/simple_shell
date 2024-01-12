@@ -13,7 +13,8 @@ char *stringdup(char *input);
 char  **tokener(char *str);
 void prompt(void);
 char *my_strdup(char *str);
-void cmd_excuter(char **command, char *argv);
+extern char **environ;
+int cmd_excuter(char **cmd, char *argv);
 int str_compare(char *str1, char *str2);
 int find_length(char *str);
 #endif
