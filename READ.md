@@ -1,1 +1,0 @@
-The Simple Shell project is agroup project, integral to the ALX Software Engineering program, is designed to emulate the Unix shell in its basic form. It furnishes a command-line interface, allowing users to interact with the operating system by executing those commands.

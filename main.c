@@ -8,12 +8,14 @@
 int main(int ac, char **argv)
 {
 char *input;
-char *input_cpy;
-char *command[2];
+int i, x;
+char **cmd;
 size_t n;
 ssize_t read_no;
+int status;
 
-int status = 0;
+status = 0;
+cmd =   NULL;
 while (1)
 {
 prompt();
@@ -27,16 +29,16 @@ write(STDOUT_FILENO, "\n", 1);
 free(input);
 return (status);
 }
-input_cpy = NULL;
-input_cpy = malloc(sizeof(char) * (read_no));
-if (input_cpy == NULL)
-perror(argv[0]);
-string_copier(input, input_cpy);
-command[0] = input_cpy;
-command[1] = NULL;
-if (ac == 2)
-cmd_excuter(command, argv[0]);
-free(input_cpy);
-free(input);
+cmd = tokener(input);
+if (cmd == NULL)
+continue;
+x = str_compare(cmd[0], "exit");
+if (x == 0)
+return (status);
+if (ac > 0)
+cmd_excuter(cmd, argv[0]);
+for (i = 0; cmd[i]; i++)
+free(cmd[i]);
 }
+return (0);
 }

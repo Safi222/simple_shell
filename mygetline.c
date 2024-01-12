@@ -12,6 +12,7 @@ ssize_t read_no;
 
 read_no = getline(str, n, stdin);
 if (read_no == -1)
+
 return (read_no);
 return (read_no);
 }
