@@ -25,7 +25,7 @@ free(cmd[i]);
 free(cmd);
 cmd = NULL;
 perror(argv);
-return (0);
+exit(100);
 }
 }
 else
