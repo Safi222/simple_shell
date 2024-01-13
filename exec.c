@@ -18,7 +18,7 @@ exit(EXIT_FAILURE);
 }
 if (pid == 0)
 {
-cm =mypath(cmd[0], argv);
+cm = cmd[0];
 
 if (execve(cm, cmd, environ) == -1)
 {

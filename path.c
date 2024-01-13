@@ -41,7 +41,7 @@ free(copyofpath);
 return (_pathargv[k]);
 }
 k++;
-token = strtok(NULL, delim);
+token = strtok(NULL, " :");
 }
 free(copyofpath);
 for (n = 0; n < k; n++)
