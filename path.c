@@ -14,7 +14,7 @@ int n, k, count = 0;
 _path = getenv("PATH");
 if (_path == NULL)
 return (NULL);
-count = strlen(_path);
+count = find_length(_path);
 copyofpath = malloc(count + 1);
 if (copyofpath == NULL)
 {
