@@ -8,7 +8,7 @@
 int main(int ac, char **argv)
 {
 char *input;
-int  x;
+int  x, y;
 char **cmd;
 size_t n;
 ssize_t read_no;
@@ -34,7 +34,10 @@ if (cmd == NULL)
 continue;
 x = str_compare(cmd[0], "exit");
 if (x == 0)
-return (status);
+{
+y = myexit(cmd);
+return (y);
+}
 status = cmd_excuter(cmd, argv[0]);
 }
 return (0);

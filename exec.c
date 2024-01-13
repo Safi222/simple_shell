@@ -7,6 +7,7 @@
 */
 int cmd_excuter(char **cmd, char *argv)
 {
+
 char *cm;
 int i, status;
 pid_t pid = fork();
@@ -17,7 +18,8 @@ exit(EXIT_FAILURE);
 }
 if (pid == 0)
 {
-cm = cmd[0];
+cm =mypath(cmd[0], argv);
+
 if (execve(cm, cmd, environ) == -1)
 {
 for (i = 0; cmd[i]; i++)
@@ -25,7 +27,7 @@ free(cmd[i]);
 free(cmd);
 cmd = NULL;
 perror(argv);
-exit(100);
+exit(EXIT_FAILURE);
 }
 }
 else

@@ -6,7 +6,7 @@
 * @input_cpy: pointer to the destination string
 */
 
-void string_copier(char *input, char *input_cpy)
+void _copier(char *input, char *input_cpy)
 {
 int i = 0;
 
