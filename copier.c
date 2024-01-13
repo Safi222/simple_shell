@@ -15,6 +15,5 @@ while (input[i])
 input_cpy[i] = input[i];
 i++;
 }
-if (input_cpy[i - 1] == '\n')
-input_cpy[i - 1] = '\0';
+input_cpy[i] = '\0';
 }

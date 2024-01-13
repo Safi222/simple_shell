@@ -18,7 +18,16 @@ exit(EXIT_FAILURE);
 }
 if (pid == 0)
 {
-cm = cmd[0];
+cm = mypath(cmd[0], argv);
+if(cm == NULL)
+{
+for (i = 0; cmd[i]; i++)
+free(cmd[i]);
+free(cmd);
+cmd = NULL;
+perror(argv);
+exit(EXIT_FAILURE);
+}
 
 if (execve(cm, cmd, environ) == -1)
 {

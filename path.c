@@ -8,9 +8,9 @@
 char *mypath(char *cmd, char *arg0)
 {
 char *_pathargv[1024];
-char *_path, *copyofpath, *token;
+char *_path = NULL, *copyofpath = NULL, *token = NULL;
 struct stat buf;
-int n, k, count;
+int n, k, count = 0;
 _path = getenv("PATH");
 if (_path == NULL)
 return (NULL);
